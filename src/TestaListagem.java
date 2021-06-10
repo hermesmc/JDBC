@@ -24,7 +24,7 @@ public class TestaListagem {
 			String descricao = rst.getString("descricao");
 			System.out.println(id);
 			System.out.println(nome);
-			System.out.println(descricao); 
+			System.out.println(descricao);
 		}
 		
 		con.close();	
