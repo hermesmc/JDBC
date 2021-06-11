@@ -8,6 +8,6 @@ public class CriaConexao {
 		String urlConnection = 	"jdbc:mysql://127.0.0.1/loja_virtual?useTimezone=true&serverTimezone=UTC";
 		String userConnection = "root";
 		String passwordConnection = "Peruas@1";
-		return DriverManager.getConnection(urlConnection, userConnection, passwordConnection);
+		return DriverManager.getConnection(urlConnection, userConnection, passwordConnection); 
 	}
 }
