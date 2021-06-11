@@ -48,7 +48,7 @@ JDBC significa Java DataBase Conectivity
       import java.sql.Statement;
 
       public class TestaInsercao {
-            public static void main(String[] args) throws SQLException {
+          public static void main(String[] args) throws SQLException {
 	          ConnectionFactory connectionFactory = new ConnectionFactory();
 	          Connection connection = connectionFactory.recuperarConexao(); 
 		
@@ -59,5 +59,5 @@ JDBC significa Java DataBase Conectivity
 	                Integer id = resultado.getInt(1);
 	                System.out.println("Foi criado o ID:" + id);
 	          }        
-	    } 
+	      } 
       }	
