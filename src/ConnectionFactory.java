@@ -2,7 +2,7 @@ import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.SQLException;
 
-public class CriaConexao {
+public class ConnectionFactory {
 
 	public Connection recuperarConexao() throws SQLException {
 		String urlConnection = 	"jdbc:mysql://127.0.0.1/loja_virtual?useTimezone=true&serverTimezone=UTC";
