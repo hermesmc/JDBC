@@ -1,4 +1,5 @@
 import java.sql.Connection;
+import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
@@ -9,8 +10,10 @@ public class TestaExclusao {
 		ConnectionFactory connectionFactory = new ConnectionFactory();
 		Connection connection = connectionFactory.recuperarConexao(); 
 		
-		Statement stm = connection.createStatement();
-		stm.execute("DELETE FROM produto WHERE (id = 6)");
+		int numId = 3;
+		PreparedStatement stm = connection.prepareStatement("DELETE FROM produto WHERE (id = ?)");
+		stm.setInt(1, numId);
+		stm.execute();
         
 		int contador = stm.getUpdateCount();
 		System.out.println("Linhas modificadas: " + contador);

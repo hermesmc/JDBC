@@ -21,8 +21,6 @@ public class TestaInsercaoComparando {
 		while(resultado.next()) {
 			Integer id = resultado.getInt(1);
 			System.out.println("Foi criado o ID:" + id);
-		}
-        
+		}        
 	}
-
 }
