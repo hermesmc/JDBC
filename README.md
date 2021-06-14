@@ -74,7 +74,7 @@ JDBC significa Java DataBase Conectivity
 
 	      public static void main(String[] args) throws SQLException {
 		      String nome = "mouse'";
-		      String descricao = "mouse sem fio";
+		      String descricao = "mouse sem fio"; delete from produto;";
 		      ConnectionFactory connectionFactory = new ConnectionFactory();
 		      Connection connection = connectionFactory.recuperarConexao(); 
 				
