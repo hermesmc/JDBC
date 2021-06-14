@@ -64,13 +64,13 @@ JDBC significa Java DataBase Conectivity
 
 - Utilizando PrepareStatement:
 
-import java.sql.Connection;
-import java.sql.PreparedStatement;
-import java.sql.ResultSet;
-import java.sql.SQLException;
-import java.sql.Statement;
+      import java.sql.Connection;
+      import java.sql.PreparedStatement;
+      import java.sql.ResultSet;
+      import java.sql.SQLException;
+      import java.sql.Statement;
 
-     public class TestaInsercaoComparando {
+      public class TestaInsercaoComparando {
 
 	   public static void main(String[] args) throws SQLException {
 		String nome = "mouse'";
@@ -89,4 +89,4 @@ import java.sql.Statement;
 			System.out.println("Foi criado o ID:" + id);
 		}        
 	   }
-     }
+      }
