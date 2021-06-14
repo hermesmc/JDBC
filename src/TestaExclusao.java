@@ -15,5 +15,4 @@ public class TestaExclusao {
 		int contador = stm.getUpdateCount();
 		System.out.println("Linhas modificadas: " + contador);
 	}
-
 }
