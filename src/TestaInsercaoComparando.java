@@ -11,12 +11,25 @@ public class TestaInsercaoComparando {
 		String descricao = "mouse sem fio";
 		ConnectionFactory connectionFactory = new ConnectionFactory();
 		Connection connection = connectionFactory.recuperarConexao(); 
+
+		//Retira o controle de commit do JDBC
 		connection.setAutoCommit(false);
-				
-		PreparedStatement stm = connection.prepareStatement("INSERT INTO produto (id, nome, descricao) VALUES(0, ?, ?)", Statement.RETURN_GENERATED_KEYS);
-		//adicionarVariavel(nome, descricao, stm);
-		adicionarVariavel("SmartTV",  "45 polegadas", stm);
-		adicionarVariavel("Radio", "AM/FM stereo", stm);
+
+		try {
+			PreparedStatement stm = connection.prepareStatement("INSERT INTO produto (id, nome, descricao) VALUES(0, ?, ?)", Statement.RETURN_GENERATED_KEYS);
+			
+			//adicionarVariavel(nome, descricao, stm);	
+			adicionarVariavel("SmartTV",  "45 polegadas", stm);
+			adicionarVariavel("Radio", "AM/FM stereo", stm);
+			
+			//Efetua o commit depois de todos os inserts 
+			connection.commit();		
+		} catch(Exception e){
+			e.printStackTrace();
+			System.out.println("Rollback executado.");
+			connection.rollback();
+		}	
+
 	}
 
 	private static void adicionarVariavel(String nome, String descricao, PreparedStatement stm) throws SQLException {
@@ -24,7 +37,7 @@ public class TestaInsercaoComparando {
 		stm.setString(2, descricao);
 		
 		if(nome.equals("Radio")) {
-			throw new RuntimeException("Não foi possível incluir o produto.");
+			throw new RuntimeException("Não foi possível incluir o produto: " + nome);
 		}
 		
 		stm.execute();
