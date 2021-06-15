@@ -113,7 +113,7 @@ JDBC significa Java DataBase Conectivity
       
       		try {
       			PreparedStatement stm = connection.prepareStatement("INSERT INTO produto (id, nome, descricao) VALUES(0, ?, ?)",
-			Statement.RETURN_GENERATED_KEYS);
+			      Statement.RETURN_GENERATED_KEYS);
 			
       			//adicionarVariavel(nome, descricao, stm);	
       			adicionarVariavel("SmartTV",  "45 polegadas", stm);
