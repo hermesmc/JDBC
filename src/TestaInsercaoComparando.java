@@ -11,16 +11,29 @@ public class TestaInsercaoComparando {
 		String descricao = "mouse sem fio";
 		ConnectionFactory connectionFactory = new ConnectionFactory();
 		Connection connection = connectionFactory.recuperarConexao(); 
+		connection.setAutoCommit(false);
 				
 		PreparedStatement stm = connection.prepareStatement("INSERT INTO produto (id, nome, descricao) VALUES(0, ?, ?)", Statement.RETURN_GENERATED_KEYS);
+		//adicionarVariavel(nome, descricao, stm);
+		adicionarVariavel("SmartTV",  "45 polegadas", stm);
+		adicionarVariavel("Radio", "AM/FM stereo", stm);
+	}
+
+	private static void adicionarVariavel(String nome, String descricao, PreparedStatement stm) throws SQLException {
 		stm.setString(1, nome);
 		stm.setString(2, descricao);
+		
+		if(nome.equals("Radio")) {
+			throw new RuntimeException("Não foi possível incluir o produto.");
+		}
 		
 		stm.execute();
 		ResultSet resultado =  stm.getGeneratedKeys();
 		while(resultado.next()) {
 			Integer id = resultado.getInt(1);
 			System.out.println("Foi criado o ID:" + id);
-		}        
+		}    
+		
+		resultado.close();
 	}
 }

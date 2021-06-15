@@ -11,7 +11,7 @@ public class TestaExclusao {
 		Connection connection = connectionFactory.recuperarConexao(); 
 		
 		int numId = 3;
-		PreparedStatement stm = connection.prepareStatement("DELETE FROM produto WHERE (id = ?)");
+		PreparedStatement stm = connection.prepareStatement("DELETE FROM produto WHERE (id > ?)");
 		stm.setInt(1, numId);
 		stm.execute();
         
