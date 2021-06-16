@@ -147,3 +147,26 @@ JDBC significa Java DataBase Conectivity
       		resultado.close();
       	}
       }
+      
+- Utilizando try with resources. Uma das vantagens é não se precoupar em abrir e fechar a conexão com banco de dados:
+
+      		try (Connection connection = connectionFactory.recuperarConexao()){ 
+
+      			//Retira o controle de commit do JDBC
+      			connection.setAutoCommit(false);
+			
+      			// try with resources
+      			try (PreparedStatement stm = connection.prepareStatement("INSERT INTO produto (id, nome, descricao) VALUES(0, ?, ?)",
+      			Statement.RETURN_GENERATED_KEYS);)
+      			   {//adicionarVariavel(nome, descricao, stm);	
+      				adicionarVariavel("SmartTV",  "45 polegadas", stm);
+      				adicionarVariavel("Radio", "AM/FM stereo", stm);
+				
+      				//Efetua o commit depois de todos os inserts 
+      				connection.commit();		
+      			} catch(Exception e){
+      				e.printStackTrace();
+      				System.out.println("Rollback executado.");
+      				connection.rollback();
+      			}	
+      		}     
