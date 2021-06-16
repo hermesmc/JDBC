@@ -35,10 +35,6 @@ public class TestaInsercaoComparando {
 		stm.setString(1, nome);
 		stm.setString(2, descricao);
 		
-		if(nome.equals("Radio")) {
-			throw new RuntimeException("Não foi possível incluir o produto: " + nome);
-		}
-		
 		stm.execute();
 		
 		// try with resources
