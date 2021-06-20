@@ -9,6 +9,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import modelo.Categoria;
+import modelo.Produto;
 
 public class CategoriaDAO {
 
@@ -46,6 +47,34 @@ public class CategoriaDAO {
 				while(rst.next()) {
 					Categoria Categoria = new Categoria(rst.getInt(1), rst.getString(2));
 					Categorias.add(Categoria);
+				}
+			}
+		}
+		return Categorias;
+	}
+
+	public List<Categoria> listarComProdutos() throws SQLException{
+		
+		Categoria ultima = null;
+		
+		List<Categoria> Categorias = new ArrayList<Categoria>();
+		
+		String sql = "SELECT  C.id, C.nome, P.id, P.nome, P.descricao FROM categoria C"
+				   + " INNER JOIN produto P ON C.id = P.categoria_id";
+		
+		try(PreparedStatement pstm = connection.prepareStatement(sql)){
+			
+			pstm.execute();
+			
+			try(ResultSet rst = pstm.getResultSet()){
+				while(rst.next()) {
+					if (ultima == null || !ultima.getNome().equals(rst.getString(2))) {
+						Categoria categoria = new Categoria(rst.getInt(1), rst.getString(2));
+						ultima = categoria;
+						Categorias.add(categoria);						
+					}
+					Produto produto = new Produto(rst.getInt(3), rst.getString(4), rst.getString(5));
+					ultima.adicionar(produto);
 				}
 			}
 		}
