@@ -19,7 +19,10 @@ public class Categoria {
 		return nome;
 	}
 
-
+	public int getId() {
+		return id;
+	}
+	
 	public void setId(Integer id) {
 		this.id = id;		
 	}
@@ -29,4 +32,5 @@ public class Categoria {
 		return String.format("A categoria é: %d, %s", 
 				this.id, this.nome);		
 	}
+
 }
